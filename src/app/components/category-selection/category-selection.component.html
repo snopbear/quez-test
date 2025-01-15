@@ -1,0 +1,30 @@
+<div class="category-selection">
+  <h2>Select a Category</h2>
+
+  <!-- Category Dropdown -->
+  <div class="category-filter">
+    <label for="category">Select Category:</label>
+    <select id="category" [(ngModel)]="selectedCategory">
+      <option value="">-- Select a Category --</option>
+      <option *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Difficulty Dropdown -->
+  <div class="difficulty-filter">
+    <label for="difficulty">Select Difficulty:</label>
+    <select id="difficulty" [(ngModel)]="selectedDifficulty">
+      <option value="all">All</option>
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+  </div>
+
+  <!-- Start Quiz Button -->
+  <button (click)="startQuiz()" [disabled]="!selectedCategory || !selectedDifficulty">
+    Start Quiz
+  </button>
+</div>
