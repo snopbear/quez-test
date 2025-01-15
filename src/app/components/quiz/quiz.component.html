@@ -1,34 +1,33 @@
 
-
 <div class="quiz-container">
   <!-- Progress Bar -->
-  <!-- <div class="progress-bar">
+  <div class="progress-bar">
     <div class="progress" [style.width.%]="progress"></div>
   </div>
   <div *ngIf="!showResults" class="percentages">
     {{progress}} % Of Questions
-  </div> -->
-  <!-- Quiz Card -->
-  <div *ngIf="currentQuestion && !showResults" class="quiz-card">
-    <h2>{{ currentQuestion.question }}</h2>
-
-    <!-- Dynamic Component Placeholder -->
-    <ng-container #questionContainer></ng-container>
-
-    <!-- Navigation Buttons -->
-    <div class="navigation">
-      <button (click)="previousQuestion()" [disabled]="currentIndex === 0">
-        Previous
-      </button>
-      <button (click)="nextQuestion()" [disabled]="!selectedAnswer">
-        Next
-      </button>
-    </div>
   </div>
+<!-- Quiz Card -->
+<div *ngIf="currentQuestion && !showResults" class="quiz-card">
+  <h2>{{ currentQuestion.question }}</h2>
 
-  <!-- Results Card -->
-  <div *ngIf="showResults" class="results-card">
-    <h2>Quiz Results</h2>
-    <p>Your Score: {{ score }}</p>
+  <!-- Dynamic Component Placeholder -->
+  <ng-container #questionContainer></ng-container>
+
+  <!-- Navigation Buttons -->
+  <div class="navigation">
+    <button (click)="previousQuestion()" [disabled]="currentIndex === 0">
+      Previous
+    </button>
+    <button (click)="nextQuestion()" [disabled]="!selectedAnswer">
+      Next
+    </button>
   </div>
+</div>
+
+<!-- Results Card -->
+<div *ngIf="showResults" class="results-card">
+  <h2>Quiz Results</h2>
+  <p>Your Score: {{ score }}</p>
+</div>
 </div>

@@ -1,7 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { QuestionComponent } from '../../models/question-component.interface';
+
 @Component({
   selector: 'app-free-text',
+  standalone: true, // Mark the component as standalone
+  imports: [FormsModule], // Import FormsModule here
   template: `
     <input
       type="text"
@@ -10,10 +14,8 @@ import { FormsModule } from '@angular/forms';
     />
     <button (click)="selectAnswer(freeTextAnswer)">Submit</button>
   `,
-  standalone: true,
-  imports: [FormsModule],
 })
-export class FreeTextComponent {
+export class FreeTextComponent implements QuestionComponent {
   @Input() freeTextAnswer: string = '';
   @Input() selectedAnswer: string | null = null;
   @Output() answerSelected = new EventEmitter<string>();

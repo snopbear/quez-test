@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { QuizService } from '../../services/quiz.service';
 import { Question } from '../../models/question.model';
 import quizComponentImports from './quiz.component.imports';
@@ -15,7 +15,7 @@ import { QuestionComponent } from '../../models/question-component.interface';
   standalone: true,
   imports: [quizComponentImports],
 })
-export class QuizComponent {
+export class QuizComponent implements OnInit, AfterViewInit {
   questions: Question[] = [];
   currentIndex = 0;
   currentQuestion: Question | null = null;
@@ -35,7 +35,7 @@ export class QuizComponent {
     private componentFactoryResolver: ComponentFactoryResolver
   ) {}
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.route.params.subscribe((params) => {
       const category = params['category'];
       const difficulty = this.route.snapshot.queryParams['difficulty'] || 'all';
@@ -46,6 +46,10 @@ export class QuizComponent {
       this.updateProgress();
       this.loadQuestion();
     });
+  }
+
+  ngAfterViewInit() {
+    // Ensure the view is fully initialized
   }
 
   loadQuestion() {
